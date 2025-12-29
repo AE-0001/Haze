@@ -1,72 +1,66 @@
-# Haze
-Hazel is an AI-powered conversational assistant that intelligently interviews users to generate a designer-ready merchandise brief.
+# Beria 
 
-Instead of static forms or predefined questionnaires, Hazel adapts each question based on prior answers, brand context, and emotional intent. The result is a high-quality brief suitable for designers, developers, and internal stakeholders.
+Beria is an AI-powered conversational assistant designed to help founders and teams create professional merchandise briefs. It intelligently interviews users to generate high-quality, designer-ready outputs.
 
----
+## Features
 
-## What This Project Does
+-   **Agentic UI**: A professional, mobile-responsive chat interface featuring a "Hero" start screen and minimalist message bubbles.
+-   **Adaptive Interview**: Uses LLM (GPT-4o-mini via OpenRouter) to ask context-aware questions.
+-   **Structured Output**: Generates both a customer-facing summary and a JSON technical brief.
+-   **Modern Stack**: Built with Next.js 16 (App Router), Tailwind CSS v4, custom Shadcn UI components, and Framer Motion.
 
-- Conducts a natural, adaptive conversation with a user
-- Asks one smart question at a time
-- Avoids repeating questions or paraphrasing previous ones
-- Detects vague answers and asks clarifying follow-ups
-- Accepts slogans and taglines with special characters
-- Extracts brand/company name from free-text input
-- Produces:
-  - A customer-facing text summary
-  - A structured JSON brief for designers and developers
+## Prerequisites
 
----
+-   Node.js 18+ installed.
+-   An [OpenRouter](https://openrouter.ai/) API Key.
 
-## Key Features
+## Installation
 
-- LLM-driven adaptive questioning (no fixed question list)
-- Context-aware follow-up logic
-- Emotion-aware brand discovery
-- Robust company name extraction from sentences
-- Clear separation between customer-facing output and developer JSON
-- Modern chat-style UI
-- CLI-only progress logging (no progress indicators shown to users)
-- Type-safe Next.js App Router architecture
+1.  Navigate to the project directory:
+    ```bash
+    cd biera
+    ```
 
----
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
 
-## Tech Stack
+3.  Configure Environment Variables:
+    -   Create a `.env.local` file in the `biera` directory.
+    -   Add your API key:
+        ```env
+        OPENROUTER_API_KEY=sk-or-your-key-here
+        ```
 
-- Next.js 14 (App Router)
-- React (Client Components)
-- TypeScript
-- OpenRouter API
-- GPT-4o-mini (via OpenRouter)
+4.  Run the development server:
+    ```bash
+    npm run dev
+    ```
 
----
+5.  Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## Project Structure
 
-app/
-├─ page.tsx
-│ └─ Conversational UI and state management
-│
-└─ api/
-└─ llm-next/
-└─ route.ts
-└─ LLM orchestration, prompt logic, and validation
+```
+biera/
+├── app/
+│   ├── api/llm-next/   # Backend API route for LLM interaction
+│   ├── page.tsx        # Main application UI (Hero & Chat)
+│   ├── types/          # TypeScript definitions (ChatMsg, Brief, etc.)
+│   └── globals.css     # Tailwind CSS configuration
+├── components/
+│   ├── chat/           # Application-specific chat components
+│   │   ├── hero-section.tsx    # "Orb" start screen
+│   │   ├── message-bubble.tsx  # Chat message UI
+│   │   └── brief-display.tsx   # Final brief result card
+│   └── ui/             # Shadcn primitives (Card, Button, Input, etc.)
+└── lib/                # Utility functions
+```
 
+## Tech Stack
 
----
-
-## Environment Setup
-
-Create a `.env.local` file in the project root:
-
-'''bash
-npm install
-npm run dev
-
-open:
-http://localhost:3000
-
-
-
-
+-   **Framework**: Next.js 16
+-   **Styling**: Tailwind CSS v4
+-   **UI Library**: Shadcn UI (Radix Primitives) + Framer Motion
+-   **AI**: OpenRouter API
