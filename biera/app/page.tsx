@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 import React, { useEffect, useRef, useState } from "react";
 import { Send, Menu, User, Sparkles, Mic } from "lucide-react";
 
@@ -14,8 +16,23 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { useAuth } from "@/hooks/use-auth";
+import { useRouter } from "next/navigation";
+import { signOut } from "firebase/auth";
+import { auth } from "@/lib/firebase";
+import { LogOut } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export default function Page() {
+  const { user } = useAuth();
+  const router = useRouter();
   const [messages, setMessages] = useState<ChatMsg[]>([]); // Empty initially to show Hero
   const [hasStarted, setHasStarted] = useState(false);
 
@@ -108,6 +125,11 @@ export default function Page() {
     if (!input.trim() || loading || done) return;
 
     // Transition from Hero to Chat
+    if (!user) {
+      router.push("/login");
+      return;
+    }
+
     if (!hasStarted) {
       setHasStarted(true);
       // Inject the first assistant message if strictly needed by UI, 
@@ -189,13 +211,35 @@ export default function Page() {
           </span>
         </div>
 
-        <Button variant="ghost" size="icon" className="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100">
-          <Avatar className="w-8 h-8">
-            <AvatarFallback className="bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300 font-medium text-xs">
-              {userAvatarLetter}
-            </AvatarFallback>
-          </Avatar>
-        </Button>
+        {user ? (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon" className="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100">
+                <Avatar className="w-8 h-8">
+                  <AvatarFallback className="bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300 font-medium text-xs">
+                    {userAvatarLetter}
+                  </AvatarFallback>
+                </Avatar>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem className="text-xs text-muted-foreground" disabled>
+                {user?.email || "No Email"}
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => signOut(auth)} className="text-red-500 hover:text-red-500 focus:text-red-500 cursor-pointer">
+                <LogOut className="mr-2 h-4 w-4" />
+                <span>Log out</span>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        ) : (
+          <Button asChild variant="ghost" size="sm" className="font-semibold">
+            <Link href="/login">Login</Link>
+          </Button>
+        )}
       </header>
 
       {/* Main Content Area */}

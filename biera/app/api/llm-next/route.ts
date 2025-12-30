@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { db } from "@/lib/firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 export const runtime = "nodejs";
 
@@ -159,6 +161,19 @@ or:
 
     if (out.done === true) {
       console.log("[llm-next] interview completed", { turn, forcedDone });
+      try {
+        const docRef = await addDoc(collection(db, "briefs"), {
+          ...out.brief,
+          status: "open",
+          createdAt: serverTimestamp(),
+        });
+        console.log("[llm-next] Brief saved with ID: ", docRef.id);
+        // Enhance the response with the saved ID
+        (out as any).briefId = docRef.id;
+      } catch (error) {
+        console.error("[llm-next] Error adding brief to Firestore: ", error);
+        // We don't fail the request, just log it, or you might want to return an error/warning
+      }
     }
 
     return NextResponse.json(out);
