@@ -13,6 +13,8 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
+import { ThemeToggle } from "@/components/ui/theme-toggle";
+
 export default function Page() {
   const [messages, setMessages] = useState<ChatMsg[]>([]); // Empty initially to show Hero
   const [hasStarted, setHasStarted] = useState(false);
@@ -169,24 +171,27 @@ export default function Page() {
   const userAvatarLetter = firstLetter(companyName);
 
   return (
-    <div className="flex flex-col h-screen bg-white font-sans text-zinc-900 selection:bg-indigo-100">
+    <div className="flex flex-col h-screen bg-white font-sans text-zinc-900 selection:bg-indigo-100 dark:bg-zinc-950 dark:text-zinc-100">
 
       {/* Header - Fixed Top */}
-      <header className="flex items-center justify-between px-4 py-3 border-b border-zinc-100 bg-white/80 backdrop-blur-md sticky top-0 z-50">
-        <Button variant="ghost" size="icon" className="text-zinc-500 hover:text-zinc-900">
-          <Menu className="w-5 h-5" />
-        </Button>
+      <header className="flex items-center justify-between px-4 py-3 border-b border-zinc-100 bg-white/80 backdrop-blur-md sticky top-0 z-50 dark:bg-zinc-950/80 dark:border-zinc-800">
+        <div className="flex items-center gap-2">
+          <Button variant="ghost" size="icon" className="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100">
+            <Menu className="w-5 h-5" />
+          </Button>
+          <ThemeToggle />
+        </div>
 
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="text-sm font-semibold tracking-tight text-zinc-800">
+          <span className="text-sm font-semibold tracking-tight text-zinc-800 dark:text-zinc-200">
             {companyName ? companyName : "Beria Agent"}
           </span>
         </div>
 
-        <Button variant="ghost" size="icon" className="text-zinc-500 hover:text-zinc-900">
+        <Button variant="ghost" size="icon" className="text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100">
           <Avatar className="w-8 h-8">
-            <AvatarFallback className="bg-zinc-100 text-zinc-600 font-medium text-xs">
+            <AvatarFallback className="bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300 font-medium text-xs">
               {userAvatarLetter}
             </AvatarFallback>
           </Avatar>
@@ -230,11 +235,11 @@ export default function Page() {
       </main>
 
       {/* Floating Input Footer */}
-      <div className="p-4 md:px-[20%] md:pb-6 bg-gradient-to-t from-white via-white to-transparent">
-        <div className="relative flex items-center shadow-lg shadow-zinc-200/50 rounded-full border border-zinc-200 bg-white transition-all focus-within:ring-2 focus-within:ring-indigo-100 focus-within:border-indigo-300">
+      <div className="p-4 md:px-[20%] md:pb-6 bg-gradient-to-t from-white via-white to-transparent dark:from-zinc-950 dark:via-zinc-950 dark:to-transparent">
+        <div className="relative flex items-center shadow-lg shadow-zinc-200/50 dark:shadow-black/50 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 transition-all focus-within:ring-2 focus-within:ring-indigo-100 dark:focus-within:ring-indigo-500/20 focus-within:border-indigo-300 dark:focus-within:border-indigo-500/50">
 
           {/* Plus / Attach Button */}
-          <Button variant="ghost" size="icon" className="ml-1 text-zinc-400 hover:text-zinc-600 rounded-full h-10 w-10">
+          <Button variant="ghost" size="icon" className="ml-1 text-zinc-400 hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300 rounded-full h-10 w-10">
             <span className="text-2xl leading-none pb-1">+</span>
           </Button>
 
@@ -245,7 +250,7 @@ export default function Page() {
             onKeyDown={handleKeyDown}
             placeholder={done ? "Interview complete" : "Ask me anything..."}
             disabled={done || loading}
-            className="flex-1 border-none shadow-none focus-visible:ring-0 px-2 h-12 text-[16px] bg-transparent placeholder:text-zinc-400"
+            className="flex-1 border-none shadow-none focus-visible:ring-0 px-2 h-12 text-[16px] bg-transparent placeholder:text-zinc-400 dark:placeholder:text-zinc-600 dark:text-zinc-100"
           />
 
           <div className="flex items-center pr-2 gap-1">
@@ -253,7 +258,7 @@ export default function Page() {
               <Button
                 onClick={onSend}
                 size="icon"
-                className="h-9 w-9 rounded-full bg-zinc-900 text-white hover:bg-zinc-700 transition-all"
+                className="h-9 w-9 rounded-full bg-zinc-900 text-white hover:bg-zinc-700 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-300 transition-all"
               >
                 <Send className="w-4 h-4" />
               </Button>
@@ -261,7 +266,7 @@ export default function Page() {
               <Button
                 size="icon"
                 variant="ghost"
-                className="h-9 w-9 rounded-full text-zinc-400 hover:bg-zinc-100"
+                className="h-9 w-9 rounded-full text-zinc-400 hover:bg-zinc-100 dark:text-zinc-500 dark:hover:bg-zinc-800"
               >
                 <Mic className="w-5 h-5" />
               </Button>
@@ -269,7 +274,7 @@ export default function Page() {
           </div>
         </div>
         <div className="text-center mt-2">
-          <span className="text-[10px] text-zinc-400 font-medium">
+          <span className="text-[10px] text-zinc-400 dark:text-zinc-600 font-medium">
             AI Agent can make mistakes. Check important info.
           </span>
         </div>

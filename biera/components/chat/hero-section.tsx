@@ -21,7 +21,7 @@ export function HeroSection() {
             </div>
 
             <div className="space-y-4 max-w-md">
-                <h2 className="text-3xl font-semibold tracking-tight text-zinc-900">
+                <h2 className="text-3xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
                     Where ideas meet designers and become merch.
                 </h2>
 
@@ -34,7 +34,7 @@ export function HeroSection() {
                     ].map((label, i) => (
                         <div
                             key={i}
-                            className="px-4 py-2 text-sm font-medium text-zinc-600 bg-white border border-zinc-200 rounded-full shadow-sm hover:bg-zinc-50 cursor-default transition-colors"
+                            className="px-4 py-2 text-sm font-medium text-zinc-600 bg-white border border-zinc-200 rounded-full shadow-sm hover:bg-zinc-50 cursor-default transition-colors dark:bg-zinc-900 dark:border-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-200"
                         >
                             {label}
                         </div>
