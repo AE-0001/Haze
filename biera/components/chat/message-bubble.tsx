@@ -30,7 +30,7 @@ export function MessageBubble({
                 </Avatar>
             )}
 
-            <div className={cn("flex flex-col max-w-[85%] md:max-w-[75%]", isUser ? "items-end" : "items-start")}>
+            <div className={cn("flex flex-col max-w-[90%] md:max-w-[75%]", isUser ? "items-end" : "items-start")}>
                 <div
                     className={cn(
                         "px-5 py-3 text-[15px] leading-relaxed",

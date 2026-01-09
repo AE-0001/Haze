@@ -57,7 +57,7 @@ export function BriefCard({ brief }: { brief: Brief }) {
     };
 
     return (
-        <Card className="w-[350px]">
+        <Card className="w-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-zinc-200/50 dark:border-zinc-800">
             <CardHeader>
                 <div className="flex justify-between items-center mb-2">
                     <Badge variant="outline" className="uppercase text-xs tracking-wider">

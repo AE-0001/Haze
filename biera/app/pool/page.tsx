@@ -35,10 +35,10 @@ export default function PoolPage() {
 
     return (
         <ProtectedRoute allowedRoles={['designer', 'admin']}>
-            <div className="min-h-screen bg-background p-8">
-                <header className="mb-8">
-                    <h1 className="text-3xl font-bold tracking-tight">Design Requests Pool</h1>
-                    <p className="text-muted-foreground mt-2">
+            <div className="min-h-screen bg-background p-4 md:p-8 lg:p-12">
+                <header className="mb-8 md:mb-12">
+                    <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">Design Requests Pool</h1>
+                    <p className="text-muted-foreground mt-2 text-lg">
                         Browse and accept available design briefs. First come, first served.
                     </p>
                 </header>

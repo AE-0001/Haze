@@ -249,7 +249,7 @@ export default function Page() {
         {!hasStarted && messages.length === 0 ? (
           <HeroSection />
         ) : (
-          <ScrollArea className="flex-1 px-4 py-6 md:px-[20%]">
+          <ScrollArea className="flex-1 px-2 md:px-[20%] py-4 md:py-6">
             <div className="space-y-6 pb-20">
               {/* Render messages */}
               {messages.map((m, i) => (
@@ -279,7 +279,7 @@ export default function Page() {
       </main>
 
       {/* Floating Input Footer */}
-      <div className="p-4 md:px-[20%] md:pb-6 bg-gradient-to-t from-white via-white to-transparent dark:from-zinc-950 dark:via-zinc-950 dark:to-transparent">
+      <div className="p-3 md:px-[20%] md:pb-6 bg-gradient-to-t from-white via-white to-transparent dark:from-zinc-950 dark:via-zinc-950 dark:to-transparent">
         <div className="relative flex items-center shadow-lg shadow-zinc-200/50 dark:shadow-black/50 rounded-full border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 transition-all focus-within:ring-2 focus-within:ring-indigo-100 dark:focus-within:ring-indigo-500/20 focus-within:border-indigo-300 dark:focus-within:border-indigo-500/50">
 
           {/* Plus / Attach Button */}

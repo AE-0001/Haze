@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 export function HeroSection() {
     return (
-        <div className="flex flex-col items-center justify-center flex-1 h-full min-h-[400px] text-center p-6 space-y-8 animate-in fade-in zoom-in duration-700">
+        <div className="flex flex-col items-center justify-center flex-1 h-full min-h-[50vh] md:min-h-[400px] text-center p-4 md:p-6 space-y-6 md:space-y-8 animate-in fade-in zoom-in duration-700">
 
             {/* Orb Container */}
             <div className="relative flex items-center justify-center">
