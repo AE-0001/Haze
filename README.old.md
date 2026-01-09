@@ -1,4 +1,4 @@
-# Beria (formerly Haze)
+# Beria 
 
 Beria is an AI-powered conversational assistant designed to help founders and teams create professional merchandise briefs. It intelligently interviews users to generate high-quality, designer-ready outputs.
 
