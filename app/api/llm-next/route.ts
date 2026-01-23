@@ -41,6 +41,7 @@ export async function POST(req: Request) {
       answers?: Record<string, string>;
       turn?: number;
       askedQuestions?: string[];
+      customerEmail?: string;
     };
 
     const messages = Array.isArray(body.messages) ? body.messages : [];
@@ -164,6 +165,7 @@ or:
       try {
         const docRef = await addDoc(collection(db, "briefs"), {
           ...out.brief,
+          customerEmail: body.customerEmail || null,
           status: "open",
           createdAt: serverTimestamp(),
         });

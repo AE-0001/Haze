@@ -13,6 +13,7 @@ export type Brief = {
     };
     dos: string[];
     donts: string[];
+    customerEmail?: string;
     closing_to_customer: string;
 };
 

@@ -12,7 +12,7 @@ import { BriefDisplay } from "@/components/chat/brief-display";
 import { HeroSection } from "@/components/chat/hero-section";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
+
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 import { ThemeToggle } from "@/components/ui/theme-toggle";
@@ -73,6 +73,7 @@ export default function Page() {
           answers: nextAnswers,
           turn: nextTurn,
           askedQuestions: nextAsked,
+          customerEmail: user?.email,
         }),
       });
 
@@ -249,8 +250,8 @@ export default function Page() {
         {!hasStarted && messages.length === 0 ? (
           <HeroSection />
         ) : (
-          <ScrollArea className="flex-1 px-2 md:px-[20%] py-4 md:py-6">
-            <div className="space-y-6 pb-20">
+          <div className="flex-1 overflow-y-auto px-2 md:px-[20%] py-4 md:py-6 scroll-smooth">
+            <div className="space-y-6 pb-32">
               {/* Render messages */}
               {messages.map((m, i) => (
                 <MessageBubble
@@ -273,7 +274,7 @@ export default function Page() {
 
               <div ref={scrollRef} className="h-px w-full" />
             </div>
-          </ScrollArea>
+          </div>
         )}
 
       </main>

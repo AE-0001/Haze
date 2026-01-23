@@ -74,9 +74,9 @@ export function BriefDisplay({ brief }: BriefDisplayProps) {
                                 <FileJson className="h-4 w-4 text-black dark:text-zinc-400" />
                                 Raw JSON Data
                             </div>
-                            <ScrollArea className="h-[300px] w-full bg-stone-50/30 dark:bg-zinc-950/30">
+                            <ScrollArea className="max-h-[60vh] h-auto min-h-[300px] w-full bg-stone-50/30 dark:bg-zinc-950/30">
                                 <div className="p-6">
-                                    <pre className="text-xs font-mono text-stone-600 whitespace-pre-wrap break-words leading-relaxed custom-json-theme dark:text-zinc-400">
+                                    <pre className="text-xs font-mono text-stone-600 whitespace-pre-wrap break-words leading-relaxed custom-json-theme dark:text-zinc-400 overflow-x-auto">
                                         {JSON.stringify(brief, null, 2)}
                                     </pre>
                                 </div>
