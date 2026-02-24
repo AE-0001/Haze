@@ -1,0 +1,22 @@
+# System Files
+.DS_Store
+Thumbs.db
+.idea
+.vscode
+
+# Environment
+.env
+.env.local
+.env.*
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Next.js (if built at root, though mostly in biera/)
+.next/
+out/
+build/
+dist/
