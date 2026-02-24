@@ -31,8 +31,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export default function Page() {
-  // const { user } = useAuth();
-  const user = { email: "demo@user.com", uid: "demo-user" } as any;
+  const { user } = useAuth();
+  // const user = { email: "demo@user.com", uid: "demo-user" } as any;
   const router = useRouter();
   const [messages, setMessages] = useState<ChatMsg[]>([]); // Empty initially to show Hero
   const [hasStarted, setHasStarted] = useState(false);
@@ -127,10 +127,10 @@ export default function Page() {
     if (!input.trim() || loading || done) return;
 
     // Transition from Hero to Chat
-    // if (!user) {
-    //   router.push("/login");
-    //   return;
-    // }
+    if (!user) {
+      router.push("/login");
+      return;
+    }
 
     if (!hasStarted) {
       setHasStarted(true);
